@@ -1,13 +1,15 @@
 # <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50"> Simple Shell <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50">
 
 <p align="center">
-  <img src="(https://user-images.githubusercontent.com/66263776/89716358-ec776180-d971-11ea-8b72-ecc9ed877d31.JPG)" width="400" height= "200">
+  <img src="(https://user-images.githubusercontent.com/66263776/89717344-5d6f4700-d97b-11ea-8b15-4e95b74fbe2b.jpeg)" width="400" height= "200">
 </p>
 
 ## :books: Resources:books:
 Read or watch:
 * [Everything you need to know to start coding your own shell](https://intranet.hbtn.io/concepts/64)
 * [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell)
+* [Thompson shell](https://en.wikipedia.org/wiki/Thompson_shell)
+* [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
 
 ---
 ## Learning Objectives:bulb:
