@@ -9,6 +9,7 @@ Read or watch:
 * [Everything you need to know to start coding your own shell](https://intranet.hbtn.io/concepts/64)
 * [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell)
 
+
 ---
 ## Learning Objectives:bulb:
 What you should learn from this project:
@@ -31,6 +32,7 @@ What you should learn from this project:
 
 ---
 ---
+
 
 ## AuthorS
 * **Camilo Barreiro** - [CBarreiro96](https://github.com/CBarreiro96)
