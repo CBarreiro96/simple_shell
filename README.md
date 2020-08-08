@@ -11,6 +11,7 @@ Read or watch:
 * [Thompson shell](https://en.wikipedia.org/wiki/Thompson_shell)
 * [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
 
+
 ---
 ## Learning Objectives:bulb:
 What you should learn from this project:
@@ -33,6 +34,7 @@ What you should learn from this project:
 
 ---
 ---
+
 
 ## AuthorS
 * **Camilo Barreiro** - [CBarreiro96](https://github.com/CBarreiro96)
