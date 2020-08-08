@@ -1,5 +1,7 @@
 # 0x15. C - File I/O
 
+## Interesante algo infantil pero interesante hhahahaah 😜😜.
+
 ## Resources:books:
 Read or watch:
 * [File descriptors](https://intranet.hbtn.io/rltoken/zwnc2vqfmCs_ZThsyxkjJw)
