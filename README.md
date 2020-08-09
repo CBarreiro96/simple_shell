@@ -1,7 +1,7 @@
 # <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50"> Simple Shell <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50">
 
 <p align="center">
-  <img src="(https://github.com/CBarreiro96/simple_shell/blob/Camilo/ShellImage.jpg)" width="400" height= "200">
+  <img src="https://github.com/CBarreiro96/simple_shell/blob/Camilo/ShellImage.jpg" width="400" height= "200">
 </p>
 
 ## :books: Resources:books:
