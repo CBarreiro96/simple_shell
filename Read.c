@@ -17,6 +17,7 @@ char *_getline(int file)
 	index = 0;
 /*Fill a block of memory with the buffer_size*/
 	_memset(buffer, '\0', buffer_size);
+
 	while ((i = read(file, buffer + index, buffer_size - index)) > 0)
 	{
 
@@ -33,7 +34,6 @@ char *_getline(int file)
 		index += i;
 	}
 	if (i == 0)
-
 		_memcpy(buffer, "exit", 5);
 	return (buffer);
 }
