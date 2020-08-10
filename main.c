@@ -37,7 +37,7 @@ int main(int ac, char **av, char **env);
 		}
 
 		token = strtok(str, s); /*split the line in tokens */
-		if (tokenarray == NULL)
+		if (token == NULL)
 		{
 			free(line);
 			free(new_line);
