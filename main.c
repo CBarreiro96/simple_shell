@@ -47,7 +47,7 @@ int main(int ac, char **av, char **env);
 			token = strtok(NULL, s);
 
 
-		execut(tokens, env, line, nline, av);
+		execut(token, env, line, nline, av);
 
 	}
 	return (0);
