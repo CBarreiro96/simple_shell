@@ -65,3 +65,30 @@ void _memcpy(char *dest, char *src, unsigned int bytes)
 	for (i = 0; i < bytes; i++)
 		dest[i] = src[i];
 }
+/**
+ * _realloc_newline - allocad a copy of line without \n.
+ * @line: the original line got it.
+ * @len: the number of characters
+ *
+ * Return: a copy a new line with \0.
+ */
+char *new_memory(char *line, size_t len)
+{
+	char *newline;
+	int i =  0;
+
+	newline = malloc(sizeof(char) * len);
+	if (newline == NULL)
+		return (NULL);
+
+	while (*(line + i) != '\n')
+	{
+		*(newline + i) = *(line + i);
+		i++;
+	}
+
+	*(newline + i) = '\0';
+
+	return (newline);
+
+}

@@ -1,4 +1,15 @@
 #include "shell.h"
+/**
+ *
+ *
+ *
+ *
+ */
+void simple_print(void)
+{
+	write(STDOUT_FILENO, "Simple_shell $ ",15);
+
+}
 
 /**
  * _strlen_const - strlen for const strings
@@ -12,15 +23,4 @@ int _strlen_const(const char *s)
 	for (i = 0; s[i] != '\0'; i++)
 		;
 	return (i);
-}
-/**
- * simple_print - allows us to print simple lines
- * @str: const string to print
- */
-void simple_print(const char *str)
-{
-	int len;
-
-	len = _strlen_const(str);
-	write(STDOUT_FILENO, str, len);
 }
