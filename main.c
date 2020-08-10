@@ -1,4 +1,4 @@
-#include "holberton.c"
+#include "shell.h"
 /**
  * main - simula a shell program.
  * @ac: the number of arguments passed.
@@ -29,7 +29,7 @@ int main(int ac, char **av, char **env);
 			return (0);
 		}
 
-		new_line = _realloc_newline(line, characters); /* get line without \n */
+		new_line = new_memory(line, characters); /* get line without \n */
 		if (new_line == NULL)
 		{
 			free(line);

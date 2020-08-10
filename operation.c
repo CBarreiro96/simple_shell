@@ -1,4 +1,4 @@
-#include "holberton.c"
+#include "shell.h"
 /**
  *
  *
@@ -7,9 +7,10 @@
  */
 void simple_print(void)
 {
-	write(STDOUT_FILENO, "$ ",2);
+	write(STDOUT_FILENO, "Simple_shell $ ",15);
 
 }
+
 /**
  * _strlen_const - strlen for const strings
  * @s: string to be measured
