@@ -102,9 +102,9 @@ char *copy_token(char *nline)
 {
 	int i, size;
 
-	char *string;
-    int i = 0;
-	int size = 0;
+	char *line;
+    i = 0;
+	size = 0;
 
 	if (nline == NULL)
 		return (NULL);
@@ -116,16 +116,16 @@ char *copy_token(char *nline)
 	}
 
 	i = 0;
-	nline = malloc(sizeof(char) * size + 1);
+	line = malloc(sizeof(char) * size + 1);
 
 	if (nline == NULL)
 		return (NULL);
 
 	while (*(nline + i) != '\0')
 	{
-		*(nline + i) = *(nline + i);
+		*(line + i) = *(nline + i);
 		i++;
 	}
-	*(nline + i) = '\0';
-	return (nline);
+	*(line + i) = '\0';
+	return (line);
 }
