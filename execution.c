@@ -38,19 +38,14 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	{
 		if (tokens[0][0] == '/')
 		{
-			if(stat(tokens[0], &status)-1)
+			if(stat(tokens[0], &status) == -1)
 			{
 				/* We need to develop a funtion that manage the ERRORS */
-				write(STDOUT_FILENO, "Error directory not found ", 25);
+				write(STDOUT_FILENO, "Error directory not found ", 26);
 			}
 			execve(tokens[0],tokens, NULL);
 		}
 
-		else
-		{
-			/* code */
-		}
-		
 		printf("%d",*line);
 		printf("%d",*nline);
 		return 0;
