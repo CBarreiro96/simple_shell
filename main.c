@@ -7,47 +7,45 @@
  *
  * Return: 0 if is secessful.
  */
-int main(int ac, char **av, char **env);
+int main(int ac, char **av, char **env)
 {
 	char *line, *new_line;
 	size_t size = 0;
-	size_t characters;
+	ssize_t characters;
 	char *token;
-	const char s[2] = " ";
 
 	(void)ac;
 	(void)av;
 
 	while (1)
 	{
-		simple_print(); /* print $ */
+		 /* print $ */
+		simple_print();
 
-		character = getline(&line, &size, stdin); /* get line */
+		 /* get line */
+		characters = getline(&line, &size, stdin);
 		if (characters == EOF || characters == -1)
 		{
 			free(line);
 			return (0);
 		}
-
-		new_line = new_memory(line, characters); /* get line without \n */
+		/* get line without \n */
+		new_line = new_memory(line, characters); 
 		if (new_line == NULL)
 		{
 			free(line);
 			return (0);
 		}
-
-		token = strtok(str, s); /*split the line in tokens */
+		 /*split the line in tokens */
+		token = strtok(new_line, DELIMS);
 		if (token == NULL)
 		{
 			free(line);
 			free(new_line);
 			return (0);
 		}
-		while (token != NULL)
-			token = strtok(NULL, s);
 
-
-		execut(token, env, line, nline, av);
+		execut(token, env, line, new_line, av);
 
 	}
 	return (0);

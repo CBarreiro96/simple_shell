@@ -1,8 +1,7 @@
 #include "shell.h"
 /**
- *
- *
- *
+ * simple_print - print a message in the terminal
+ * Return: void.
  *
  */
 void simple_print(void)
