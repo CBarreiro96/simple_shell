@@ -92,3 +92,40 @@ char *new_memory(char *line, size_t len)
 	return (newline);
 
 }
+/**
+ *_strdup - returns pointer to allocated space containing copy of string
+ *@nline: string that will be copied into the space
+ *
+ *Return: pointer to allocated space
+ */
+char *copy_token(char *nline)
+{
+	int i, size;
+
+	char *string;
+    int i = 0;
+	int size = 0;
+
+	if (nline == NULL)
+		return (NULL);
+
+	while (*(nline + i) != '\0')
+	{
+		size++;
+		i++;
+	}
+
+	i = 0;
+	nline = malloc(sizeof(char) * size + 1);
+
+	if (nline == NULL)
+		return (NULL);
+
+	while (*(nline + i) != '\0')
+	{
+		*(nline + i) = *(nline + i);
+		i++;
+	}
+	*(nline + i) = '\0';
+	return (nline);
+}
