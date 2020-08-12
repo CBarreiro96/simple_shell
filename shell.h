@@ -24,8 +24,11 @@ int execut(char *tokens, char **env, char *line, char *nline, char **av);
 
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, size_t bytes);
+
 /*Prototipes of string operation*/
 int _strlen_const(const char *s);
 void simple_print(void);
+char **split_line(char *nline);
+char *copy_token(char *nline);
 
 #endif /* End of _SHELL_H */
