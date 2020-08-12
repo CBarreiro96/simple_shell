@@ -13,7 +13,6 @@ int main(int ac, char **av, char **env);
 	size_t size = 0;
 	size_t characters;
 	char *token;
-	const char s[2] = " ";
 
 	(void)ac;
 	(void)av;
@@ -36,16 +35,13 @@ int main(int ac, char **av, char **env);
 			return (0);
 		}
 
-		token = strtok(str, s); /*split the line in tokens */
+		token = strtok(str, DELIMS); /*split the line in tokens */
 		if (token == NULL)
 		{
 			free(line);
 			free(new_line);
 			return (0);
 		}
-		while (token != NULL)
-			token = strtok(NULL, s);
-
 
 		execut(token, env, line, nline, av);
 
