@@ -18,8 +18,9 @@ int main(int ac, char **av, char **env)
 
 	while (1)
 	{
-		 /* print $ */
-		simple_print();
+		/* test whether a file descriptor refers to a terminal */
+		if (isatty(STDIN_FILENO) == 1);
+			simple_print();
 
 		 /* get line */
 		characters = getline(&line, &size, stdin);
