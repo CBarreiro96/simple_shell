@@ -5,7 +5,6 @@
 </p>
 
 ## :books: Resources:books:
->>>>>>> 1b87c62ab75af0b672794ec6a68493deb3f12235
 Read or watch:
 * [Everything you need to know to start coding your own shell](https://intranet.hbtn.io/concepts/64)
 * [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell)
@@ -33,15 +32,7 @@ What you should learn from this project:
 * What is EOF / “end-of-file”?
 
 
----
----
-
-<<<<<<< HEAD
-## Author
-* **Camilo Barreiro** - [CBarreiro96](https://github.com/CBarreiro96)
-=======
 
 ## AuthorS
 * **Camilo Barreiro** - [CBarreiro96](https://github.com/CBarreiro96)
 * **Luis Esteban Martinez Fuentes** - [Estcode14](https://github.com/Estcode14)
->>>>>>> 1b87c62ab75af0b672794ec6a68493deb3f12235
