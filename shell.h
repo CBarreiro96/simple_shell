@@ -20,8 +20,11 @@ void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 void _memset(char *str, int fill, int n);
 void _memcpy(char *dest, char *src, unsigned int bytes);
 char *new_memory(char *line, size_t len);
-int execut(char **tokens, char **env, char *line, char *nline, char **av);
-char *_getline(int file);
+int execut(char *tokens, char **env, char *line, char *nline, char **av);
+
+int _strlen(char *s);
+int _strncmp(char *s1, char *s2, size_t bytes);
+
 /*Prototipes of string operation*/
 int _strlen_const(const char *s);
 void simple_print(void);

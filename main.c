@@ -23,7 +23,7 @@ int main(int ac, char **av, char **env)
 			simple_print();
 
 		 /* get line */
-		characters = getline(&line, &size, stdin);
+		characters = _getline(STDIN_FILENO);
 		if (characters == EOF || characters == -1)
 		{
 			free(line);
