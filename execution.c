@@ -8,12 +8,12 @@
  *
  * Return: 0 if success -1 if fail.
  */
-int execut(char **tokens, char **env, char *line, char nline, char **av)
+int execut(char *tokens, char **env, char *line, char *nline, char **av)
 {
 	pid_t m_PID;
-	struct stat status;
+	//struct stat status;
 
-	if (tokens == NULL || *tokens == NULL) /* validations of parameters */
+	if (tokens == NULL) /* validations of parameters */
 		return (-1);
 	
 	if (av == NULL || *av == NULL)
@@ -32,7 +32,9 @@ int execut(char **tokens, char **env, char *line, char nline, char **av)
 
 	else if (m_PID == 0) /*execution of child proccess */ 
 	{
-		
+		printf("%d",*line);
+		printf("%d",*nline);
+		return 0;
 	}
 
 	else
