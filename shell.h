@@ -8,6 +8,7 @@
 #include <signum.h>
 #include <sys/stat.h>
 #include <string.h>
+#define DELIMS " \t\0"
 
 /*To use enviroment variable we need to have this global variable*/
 extern char **environ;
@@ -25,4 +26,4 @@ char *_getline(int file);
 int _strlen_const(const char *s);
 void simple_print(const char *str);
 
-#endif /* End of _SHELL_H
+#endif /* End of _SHELL_H */
