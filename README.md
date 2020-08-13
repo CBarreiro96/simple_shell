@@ -48,9 +48,8 @@ _exit (man 2 _exit)
 ## :brain: Exrecise :brain:
 | File | Description | Flowcharts |
 | :---: | :---: | :---: |
-| [main.c](https://github.com/CBarreiro96/printf/blob/master/printf.c "Code printf f") | Contains the principal strcuture of\
- printf | [Printf](https://user-images.githubusercontent.com/66263776/88491603-83531f80-cf69-11ea-8c8f-f752965f7f1b.jpeg "flowcharts"\
-) |
+| [main.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/main.c "Principal Function") | Contains the principal of execution | (Flowchart) |
+|[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
 | [memory_managment.c](https://github.com/CBarreiro96/printf/blob/master/holberton.h "Header") | Contains the libraries of proyect and It \
 is define the struct | holberton |
 | [Operation.c](https://github.com/CBarreiro96/printf/blob/master/function_print_f.c "Function s,c,d,i") | contains the function of\
