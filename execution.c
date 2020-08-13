@@ -13,8 +13,9 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	pid_t m_PID;
 	struct stat status;
 
+
 	/* validations of parameters */
-	if (tokens == NULL) 
+	if (tokens == NULL || *tokens == NULL) 
 		return (-1);
 	
 	if (av == NULL || *av == NULL)
@@ -31,6 +32,8 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	{
 		write(STDOUT_FILENO, "Error in fork", 13);
 		return (-1);
+		printf("%s",line);
+		printf("%s",nline);
 	}
 	
 	/*execution of child proccess */ 
@@ -40,14 +43,12 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 		{
 			if(stat(tokens[0], &status) == -1)
 			{
-				/* We need to develop a funtion that manage the ERRORS */
-				write(STDOUT_FILENO, "Error directory not found ", 26);
+					print_errors(av, tokens);
 			}
 			execve(tokens[0],tokens, NULL);
 		}
 
-		printf("%d",*line);
-		printf("%d",*nline);
+		
 		return 0;
 	}
 

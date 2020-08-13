@@ -19,11 +19,11 @@ int main(int ac, char **av, char **env)
 	while (1)
 	{
 		/* test whether a file descriptor refers to a terminal */
-		if (isatty(STDIN_FILENO) == 1);
+		if (isatty(STDIN_FILENO) == 1)
 			simple_print();
 
 		 /* get line */
-		characters = _getline(STDIN_FILENO);
+		characters = getline(&line, &size, stdin);
 		if (characters == EOF || characters == -1)
 		{
 			free(line);
@@ -46,6 +46,8 @@ int main(int ac, char **av, char **env)
 		}
 
 		execut(token, env, line, new_line, av);
+		free(line);
+		free(new_line);
 
 	}
 	return (0);
