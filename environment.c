@@ -72,6 +72,7 @@ char *search_os(char *tokens, env_t *linkedlist_path)
 		abs_path = _strdup(tokens);
 		return (abs_path);
 	}
+
 	while (ep != NULL)
 	{
 		abs_path = _strdup(ep->str);
