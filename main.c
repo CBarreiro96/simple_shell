@@ -12,10 +12,11 @@ int main(int ac, char **av, char **env)
 	char *line, *new_line;
 	size_t size = 0;
 	ssize_t characters;
+    env_t *linkedlist_path;
 	char **token;
 
 	(void)ac;
-
+    linkedlist_path = list_from_path();
 	while (1)
 	{
 		/* test whether a file descriptor refers to a terminal */
@@ -45,8 +46,7 @@ int main(int ac, char **av, char **env)
 			return (0);
 		}
 
-		execut(token, env, line, new_line, av);
-
+		execut(token, linkedlist_path);
 	}
 	return (0);
 

@@ -5,23 +5,21 @@
  * @env: current enviroment.
  * @line: first line with \n.
  * @nline: copy the first line without \n.
- *
  * Return: 0 if success -1 if fail.
  */
-int execut(char **tokens, char **env, char *line, char *nline, char **av)
+int execut(char **tokens, env_t *linkedlist_path)
 {
 	pid_t m_PID;
 	struct stat status;
+    char *abs_path;
+
+	abs_path = search_os(tokens[0], linkedlist_path);
 
 	/* validations of parameters */
 	if (tokens == NULL) 
 		return (-1);
 	
-	if (av == NULL || *av == NULL)
-		return (-1);
-	
-	if (env == NULL || *env == NULL)
-		return (-1);
+
 
 	/* start with the child proccess */
 	m_PID = fork(); 
@@ -36,18 +34,8 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	/*execution of child proccess */ 
 	else if (m_PID == 0)
 	{
-		if (tokens[0][0] == '/')
-		{
-			if(stat(tokens[0], &status) == -1)
-			{
-				/* We need to develop a funtion that manage the ERRORS */
-				write(STDOUT_FILENO, "Error directory not found ", 26);
-			}
-			execve(tokens[0],tokens, NULL);
-		}
-
-		printf("%d",*line);
-		printf("%d",*nline);
+		if (execve(abs_path, tokens, environ) == -1)
+			perror("execution failed\n");
 		return 0;
 	}
 
