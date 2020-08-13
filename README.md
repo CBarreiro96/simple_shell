@@ -1,9 +1,16 @@
-# 0x15. C - File I/O
+# <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50"> Simple Shell <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50">
 
-## Resources:books:
+<p align="center">
+  <img src="https://github.com/CBarreiro96/simple_shell/blob/Camilo/ShellImage.jpg" width="400" height= "200">
+</p>
+
+## :books: Resources:books:
 Read or watch:
-* [File descriptors](https://intranet.hbtn.io/rltoken/zwnc2vqfmCs_ZThsyxkjJw)
-* [C Programming in Linux Tutorial #024 - open() read() write() Functions](https://intranet.hbtn.io/rltoken/Ig_LMzPlXTT-EwoSAgYK-Q)
+* [Everything you need to know to start coding your own shell](https://intranet.hbtn.io/concepts/64)
+* [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell)
+* [Thompson shell](https://en.wikipedia.org/wiki/Thompson_shell)
+* [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
+
 
 ---
 ## Learning Objectives:bulb:
@@ -25,8 +32,7 @@ What you should learn from this project:
 * What is EOF / “end-of-file”?
 
 
----
----
 
-## Author
+## AuthorS
 * **Camilo Barreiro** - [CBarreiro96](https://github.com/CBarreiro96)
+* **Luis Esteban Martinez Fuentes** - [Estcode14](https://github.com/Estcode14)
