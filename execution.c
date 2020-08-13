@@ -8,10 +8,12 @@
  *
  * Return: 0 if success -1 if fail.
  */
-int execut(char **tokens, char **env, char *line, char *nline, char **av)
+int execut(char **tokens, char **av, env_t *linkedlist_path)
 {
 	pid_t m_PID;
-	struct stat status;
+	char *abs_path;
+
+	abs_path = search_os(tokens[0], linkedlist_path);
 
 
 	/* validations of parameters */
@@ -21,8 +23,6 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	if (av == NULL || *av == NULL)
 		return (-1);
 	
-	if (env == NULL || *env == NULL)
-		return (-1);
 
 	/* start with the child proccess */
 	m_PID = fork(); 
@@ -32,24 +32,15 @@ int execut(char **tokens, char **env, char *line, char *nline, char **av)
 	{
 		write(STDOUT_FILENO, "Error in fork", 13);
 		return (-1);
-		printf("%s",line);
-		printf("%s",nline);
 	}
 	
 	/*execution of child proccess */ 
 	else if (m_PID == 0)
 	{
-		if (tokens[0][0] == '/')
-		{
-			if(stat(tokens[0], &status) == -1)
-			{
-					print_errors(av, tokens);
-			}
-			execve(tokens[0],tokens, NULL);
-		}
-
-		
+		if (execve(abs_path, tokens, environ) == -1)
+			print_errors(av, tokens);
 		return 0;
+
 	}
 
 	else

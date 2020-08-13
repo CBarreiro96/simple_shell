@@ -54,3 +54,43 @@ int _strncmp(char *s1, char *s2, size_t bytes)
 		;
 	return (s2[i] - s1[i]);
 }
+char *_strcat_realloc(char *dest, char *src)
+{
+	unsigned int dest_len, src_len, i;
+
+	dest_len = _strlen(dest);
+	src_len = _strlen(src);
+	dest = _realloc(dest, dest_len, dest_len + src_len + 1);
+	if (dest == NULL)
+		return (NULL);
+	for (i = 0; i < src_len; i++)
+	{
+		dest[i + dest_len] = src[i];
+	}
+	dest[i + dest_len] = '\0';
+	return (dest);
+}
+/**
+  * _strdup - duplicates a string
+  * @src: source to copy from
+  * Return: pointer to malloc'd space
+  **/
+char *_strdup(char *src)
+{
+	int len, i;
+	char *dest;
+
+	if (src == NULL)
+		return (NULL);
+	len = _strlen(src);
+	if (len < 0)
+		return (NULL);
+	len++;
+	dest = malloc((len) * sizeof(char));
+	if (dest == NULL)
+		return (NULL);
+	for (i = 0; i < len; i++)
+		dest[i] = src[i];
+	dest[i - 1] = '\0';
+	return (dest);
+}

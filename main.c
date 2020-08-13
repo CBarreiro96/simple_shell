@@ -7,12 +7,14 @@
  *
  * Return: 0 if is secessful.
  */
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
 	char *line, *new_line;
 	size_t size = 0;
 	ssize_t characters;
 	char **token;
+	env_t *linkedlist_path;
+	linkedlist_path = list_from_path();
 
 	(void)ac;
 
@@ -45,9 +47,8 @@ int main(int ac, char **av, char **env)
 			return (0);
 		}
 
-		execut(token, env, line, new_line, av);
-		free(line);
-		free(new_line);
+		execut(token, av, linkedlist_path);
+
 
 	}
 	return (0);
