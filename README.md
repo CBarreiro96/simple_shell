@@ -56,8 +56,8 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 |[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
 | [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It \
 is define the struct | holberton |
-| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Function s,c,d,i") | contains the function of\
- type of data as string, char, integer (i,d) | [split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
+| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | --| ---| 
+|[split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
 | [execution.c](https://github.com/CBarreiro96/simple_shell/blob/master/execution.c "Execution") | Contains the function to printf byte to byte (**write**) | --- | ---- |
 | [linkend_list_operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/linkend_list_operation.c "linkend list operation") | It contain to description about printf | |
 | [_getenv.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/_getenv.c) | --- | ---- |
