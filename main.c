@@ -14,11 +14,10 @@ int main(int ac, char **av)
 	ssize_t characters;
     env_t *linkedlist_path;
 	char **token;
-	env_t *linkedlist_path;
+
 	linkedlist_path = list_from_path();
 
 	(void)ac;
-    linkedlist_path = list_from_path();
 	while (1)
 	{
 		/* test whether a file descriptor refers to a terminal */
