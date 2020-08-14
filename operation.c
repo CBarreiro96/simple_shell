@@ -54,6 +54,15 @@ int _strncmp(char *s1, char *s2, size_t bytes)
 		;
 	return (s2[i] - s1[i]);
 }
+<<<<<<< HEAD
+=======
+/**
+  * _strcat_realloc - concatenates 2 strings and reallocates automatically
+  * @dest: destination to copy to
+  * @src: source to copy from
+  * Return: pointer to concatenated strings
+  **/
+>>>>>>> e2c77fcf300b7d5bdb4683b8a0a90ca746ad89c0
 char *_strcat_realloc(char *dest, char *src)
 {
 	unsigned int dest_len, src_len, i;
