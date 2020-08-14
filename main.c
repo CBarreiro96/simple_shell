@@ -48,13 +48,9 @@ int main(int ac, char **av)
 			return (0);
 		}
 
-<<<<<<< HEAD
 		execut(token, av, linkedlist_path);
 
 
-=======
-		execut(token, linkedlist_path);
->>>>>>> e2c77fcf300b7d5bdb4683b8a0a90ca746ad89c0
 	}
 	return (0);
 

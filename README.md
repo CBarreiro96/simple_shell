@@ -44,20 +44,22 @@ wait4 (man 2 wait4)
 write (man 2 write)
 _exit (man 2 _exit)
 ```
+## compilation
+```
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+```
 ## File description
 ## :brain: Exrecise :brain:
 | File | Description | Flowcharts |
 | :---: | :---: | :---: |
 | [main.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/main.c "Principal Function") | Contains the principal of execution | (Flowchart) |
 |[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
-| [memory_managment.c](https://github.com/CBarreiro96/printf/blob/master/holberton.h "Header") | Contains the libraries of proyect and It \
+| [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It \
 is define the struct | holberton |
-| [Operation.c](https://github.com/CBarreiro96/printf/blob/master/function_print_f.c "Function s,c,d,i") | contains the function of\
- type of data as string, char, integer (i,d) | [split_line.c](https://github.com/CBarreiro96/printf/blob/master/function_print_f.c "Funct\
-ion Flowchart") |
-| [execution.c](https://github.com/CBarreiro96/printf/blob/master/_putchar.c "Printable Tools") | Contains the function to prin\
-tf byte to byte (**write**) | [putchar.c](https://github.com/CBarreiro96/printf/blob/master/_putchar.c "Printable Tools") |
-| [linkend_list_operation.c](https://github.com/CBarreiro96/printf/blob/master/man_3_printf "Description") | It contain to description about pr\
+| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Function s,c,d,i") | contains the function of\
+ type of data as string, char, integer (i,d) | [split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
+| [execution.c](https://github.com/CBarreiro96/simple_shell/blob/master/execution.c "Execution") | Contains the function to printf byte to byte (**write**) | --- | ---- |
+| [linkend_list_operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/linkend_list_operation.c "linkend list operation") | It contain to description about pr\
 intf |
 
 ## AuthorS
