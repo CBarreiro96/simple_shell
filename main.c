@@ -3,26 +3,22 @@
  * main - simula a shell program.
  * @ac: the number of arguments passed.
  * @av: string of the arguments.
- * @env: current envitoment.
- *
  * Return: 0 if is secessful.
  */
 int main(int ac, char **av)
 {
-	char *line, *new_line;
+	char *line, *new_line, **token;
 	size_t size = 0;
 	ssize_t characters;
-    env_t *linkedlist_path;
-	char **token;
+	env_t *linkedlist_path;
 
 	linkedlist_path = list_from_path();
-
 	(void)ac;
 	while (1)
 	{
 		/* test whether a file descriptor refers to a terminal */
 		if (isatty(STDIN_FILENO) == 1)
-			simple_print();
+			simple_print("Simple_shell $ ");
 
 		 /* get line */
 		characters = getline(&line, &size, stdin);
@@ -32,7 +28,7 @@ int main(int ac, char **av)
 			return (0);
 		}
 		/* get line without \n */
-		new_line = new_memory(line, characters); 
+		new_line = new_memory(line, characters);
 		if (new_line == NULL)
 		{
 			free(line);
@@ -46,11 +42,9 @@ int main(int ac, char **av)
 			free(new_line);
 			return (0);
 		}
-
+		if (is_builtin(token[0]))
+				is_builtin(token[0])(token, linkedlist_path);
 		execut(token, av, linkedlist_path);
-
-
 	}
 	return (0);
-
 }
