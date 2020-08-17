@@ -1,7 +1,7 @@
 # <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50"> Simple Shell <img src="https://user-images.githubusercontent.com/66263776/88350578-252ffd80-cd19-11ea-9730-7bd7b1da9fca.jpg" width="50" height= "50">
 
 <p align="center">
-  <img src="https://github.com/CBarreiro96/simple_shell/blob/Camilo/ShellImage.jpg" width="400" height= "200">
+  <img src="https://github.com/CBarreiro96/simple_shell/blob/Camilo/shell_image.jpg" width="500" height= "500">
 </p>
 
 ## :books: Resources:books:
@@ -49,14 +49,14 @@ _exit (man 2 _exit)
 ```
 gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 ```
-## :diamond: File description :diamond:
+## :gem: File description :gem:
 | File | Description | Flowcharts |
 | :---: | :---: | :---: |
 | [main.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/main.c "Principal Function") | Contains the principal of execution | (Flowchart) |
 |[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
 | [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It \
 is define the struct | holberton |
-| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | in this file ther are three function -- **_strlen:** fuction that retrun lenght of the argument.-- **_strncmp** | ---| 
+| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | In this file ther are three function: :sunflower:   **_strlen:** " *fuction that return lenght of the argument*" :sunflower: **_strncmp=**" **int strncmp(const char *str1, const char *str2, size_t n)** *compares at most the first n bytes of str1 and str2*" | ---| 
 |[split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
 | [execution.c](https://github.com/CBarreiro96/simple_shell/blob/master/execution.c "Execution") | Contains the function to printf byte to byte (**write**) | --- | ---- |
 | [linkend_list_operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/linkend_list_operation.c "linkend list operation") | It contain to description about printf | |
