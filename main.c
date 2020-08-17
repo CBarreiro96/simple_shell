@@ -8,17 +8,15 @@
  */
 int main(int ac, char **av)
 {
-	char *line, *new_line;
+	char *line, *new_line, **token;
 	size_t size = 0;
 	ssize_t characters;
-	char **token;
 	env_t *linkedlist_path;
 
 	linkedlist_path = list_from_path();
 	if (linkedlist_path == NULL)
 		return (-1);
 	(void)ac;
-
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 1)
@@ -45,6 +43,9 @@ int main(int ac, char **av)
 		}
 		execut(token, av, linkedlist_path);
 		free_main_memory(line, new_line, token);
+		if (is_builtin(token[0]))
+				is_builtin(token[0])(token, linkedlist_path);
+		execut(token, av, linkedlist_path);
 	}
 		free_linked_list(linkedlist_path);
 	return (0);

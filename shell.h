@@ -24,6 +24,16 @@ typedef struct environ_type
 	unsigned int len;
 	struct environ_type *next;
 } env_t;
+/**
+* struct builtin_commands - stuct for function pointers to builtin commands
+* @cmd_str: commands (env, cd, alias, history)
+* @function: function
+*/
+typedef struct builtin_commands
+{
+	char *cmd_str;
+	int (*function)();
+} builtin_cmds_t;
 
 char *_strdup(char *src);
 env_t *add_node(env_t **head, char *str, unsigned int len);
@@ -47,5 +57,9 @@ char *copy_token(char *nline);
 void print_errors(char **argv, char **tokens);
 void free_main_memory(char *line, char *nline, char **tokens);
 void free_linked_list(env_t *head);
+int (*is_builtin(char *cmd))();
+int _exit_(char **tokens, env_t *linkedlist_path);
+int _atoi(char *s);
+int _isdigit(int c);
 
 #endif /* End of _SHELL_H */

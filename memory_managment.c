@@ -69,7 +69,6 @@ void _memcpy(char *dest, char *src, unsigned int bytes)
  * new_memory - allocad a copy of line without \n.
  * @line: the original line got it.
  * @len: the number of characters
- *
  * Return: a copy a new line with \0.
  */
 char *new_memory(char *line, size_t len)
@@ -101,7 +100,6 @@ char *new_memory(char *line, size_t len)
 char *copy_token(char *nline)
 {
 	int i, size;
-
 	char *line;
 
 	i = 0;

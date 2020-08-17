@@ -7,11 +7,8 @@
  */
 char **split_line(char *nline)
 {
-
-	int i = 0;
-	int counter_token = 0;
-	char **array_of_token;
-	char *token, *tokencopy;
+	int counter_token, i = 0;
+	char **array_of_token, *token, *tokencopy;
 
 	if (nline == NULL)
 		return (NULL);
@@ -41,7 +38,6 @@ char **split_line(char *nline)
 		}
 		*(array_of_token + i) = tokencopy;
 		token = strtok(NULL, DELIMS);
-		i++;
 	}
 	*(array_of_token + i) = NULL;
 
