@@ -34,15 +34,3 @@ env_t *add_node(env_t **head, char *str, unsigned int len)
 	walk->next = new;
 	return (*head);
 }
-/**
-  * free_list - frees a list
-  * @head: beginning of the list
-  */
-void free_list(env_t *head)
-{
-	if (head == NULL)
-		return;
-	free_list(head->next);
-	free(head->str);
-	free(head);
-}

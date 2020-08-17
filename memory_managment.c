@@ -115,8 +115,7 @@ char *copy_token(char *nline)
 
 	i = 0;
 	line = malloc(sizeof(char) * size + 1);
-
-	if (nline == NULL)
+	if (line == NULL)
 		return (NULL);
 
 	while (*(nline + i) != '\0')

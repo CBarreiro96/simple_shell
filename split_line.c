@@ -14,7 +14,8 @@ char **split_line(char *nline)
 	/* This loop iterates the line and outputs the number of tokens in it*/
 	while (*(nline + i) != '\0')
 	{
-		if (nline[i] != ' ' && (nline[i + 1] == ' ' || nline[i + 1] == '\0'))
+		if (nline[i] != ' ' && (nline[i + 1] == ' ' || nline[i + 1] == '\0'
+		|| nline[i + 1] == '\t'))
 			counter_token++;
 		i++;
 	}
@@ -42,5 +43,6 @@ char **split_line(char *nline)
 		token = strtok(NULL, DELIMS);
 	}
 	*(array_of_token + i) = NULL;
+
 	return (array_of_token);
 }
