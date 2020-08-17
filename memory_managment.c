@@ -66,7 +66,7 @@ void _memcpy(char *dest, char *src, unsigned int bytes)
 		dest[i] = src[i];
 }
 /**
- * _realloc_newline - allocad a copy of line without \n.
+ * new_memory - allocad a copy of line without \n.
  * @line: the original line got it.
  * @len: the number of characters
  *
@@ -93,17 +93,18 @@ char *new_memory(char *line, size_t len)
 
 }
 /**
- *_strdup - returns pointer to allocated space containing copy of string
- *@nline: string that will be copied into the space
+ * copy_token - copy a token
+ * @nline: string that will be copied into the space
  *
- *Return: pointer to allocated space
+ * Return: pointer to allocated space
  */
 char *copy_token(char *nline)
 {
 	int i, size;
 
 	char *line;
-    i = 0;
+
+	i = 0;
 	size = 0;
 
 	if (nline == NULL)
@@ -117,8 +118,7 @@ char *copy_token(char *nline)
 
 	i = 0;
 	line = malloc(sizeof(char) * size + 1);
-
-	if (nline == NULL)
+	if (line == NULL)
 		return (NULL);
 
 	while (*(nline + i) != '\0')

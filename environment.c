@@ -7,12 +7,16 @@ env_t *list_from_path(void)
 {
 	unsigned int len, i, j;
 	char *env;
-	char buffer[BUFSIZE];
-	env_t *ep;
+	char buffer[BUFSIZE]; /*1024*/
+	env_t *ep; /*struc*/
 
 	ep = NULL;
 	len = i = j = 0;
+
 	env = _getenv("PATH");
+	if (env == NULL)
+		return (NULL);
+
 	while (*env)
 	{
 		buffer[j++] = *env;
@@ -52,7 +56,7 @@ env_t *environ_linked_list(void)
 }
 /**
   * search_os - search through os to find a command
-  * @cmd: command to search for
+  * @tokens: command to search for
   * @linkedlist_path: path to search through
   * Return: String to absolute path if found, NULL if not
   */
@@ -65,11 +69,15 @@ char *search_os(char *tokens, env_t *linkedlist_path)
 	ep = linkedlist_path;
 	if (ep == NULL || tokens == NULL)
 		return (NULL);
+
 	if ((_strncmp(tokens, "/", 1) == 0
 			|| _strncmp(tokens, "./", 2) == 0)
 			&& access(tokens, F_OK | X_OK) == 0)
 	{
-		abs_path = _strdup(tokens);
+		abs_path = tokens;
+		if (abs_path == NULL)
+			return (NULL);
+
 		return (abs_path);
 	}
 
@@ -78,9 +86,11 @@ char *search_os(char *tokens, env_t *linkedlist_path)
 		abs_path = _strdup(ep->str);
 		if (abs_path == NULL)
 			return (NULL);
+
 		abs_path = _strcat_realloc(abs_path, tokens);
 		if (abs_path == NULL)
 			return (NULL);
+
 		status = access(abs_path, F_OK | X_OK);
 		if (status == 0)
 			return (abs_path);

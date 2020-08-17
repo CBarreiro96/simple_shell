@@ -11,6 +11,7 @@ char *_getenv(const char *name)
 
 	if (!name)
 		return (NULL);
+
 	env = environ;
 	for (i = 0; env[i]; i++)
 	{
@@ -18,6 +19,9 @@ char *_getenv(const char *name)
 			;
 		len++;
 		tmp = malloc((len) * sizeof(char));
+		if (tmp == NULL)
+			return (NULL);
+
 		_memcpy(tmp, env[i], len - 1);
 		tmp[len - 1] = '\0';
 		if (_strncmp((char *)name, tmp, _strlen(tmp)) == 0)
@@ -34,7 +38,7 @@ char *_getenv(const char *name)
 			}
 			return (tmp);
 		}
-		free(tmp);
+		free(tmp);  /* estos return no creo que esten haciendo algo */
 		tmp = NULL;
 	}
 	return (NULL);

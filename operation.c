@@ -1,16 +1,5 @@
 #include "shell.h"
 /**
- * simple_print - print a message in the terminal
- * Return: void.
- *
- */
-void simple_print(void)
-{
-	write(STDOUT_FILENO, "Simple_shell $ ",15);
-
-}
-
-/**
  * _strlen_const - strlen for const strings
  * @s: string to be measured
  * Return: length of string
@@ -54,6 +43,13 @@ int _strncmp(char *s1, char *s2, size_t bytes)
 		;
 	return (s2[i] - s1[i]);
 }
+/**
+ * *_strcat_realloc - concat some string
+ * @dest: the first string
+ * @src: the second string
+ *
+ * Return: string pointer
+ */
 char *_strcat_realloc(char *dest, char *src)
 {
 	unsigned int dest_len, src_len, i;
@@ -82,13 +78,17 @@ char *_strdup(char *src)
 
 	if (src == NULL)
 		return (NULL);
+
 	len = _strlen(src);
 	if (len < 0)
 		return (NULL);
+
 	len++;
+
 	dest = malloc((len) * sizeof(char));
 	if (dest == NULL)
 		return (NULL);
+
 	for (i = 0; i < len; i++)
 		dest[i] = src[i];
 	dest[i - 1] = '\0';
