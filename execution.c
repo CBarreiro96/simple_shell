@@ -4,11 +4,11 @@
  * Return: void.
  *
  */
-void _prompt(const char *str)
+void _prompt(char *str)
 {
 	int len;
 
-	len = _strlen_const(str);
+	len = _strlen(str);
 	write(STDOUT_FILENO, str, len);
 
 }

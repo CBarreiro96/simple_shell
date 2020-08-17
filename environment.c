@@ -64,39 +64,39 @@ env_t *environ_linked_list(void)
 char *search_os(char *tokens, env_t *linkedlist_path)
 {
 	int status;
-	char *abs_path;
-	env_t *ep;
+	char *step_abs_path;
+	env_t *path_node;
 
-	ep = linkedlist_path;
-	if (ep == NULL || tokens == NULL)
+	path_node = linkedlist_path;
+	if (path_node == NULL || tokens == NULL)
 		return (NULL);
 
 	if ((_strncmp(tokens, "/", 1) == 0
 			|| _strncmp(tokens, "./", 2) == 0)
 			&& access(tokens, F_OK | X_OK) == 0)
 	{
-		abs_path = tokens;
-		if (abs_path == NULL)
+		step_abs_path = tokens;
+		if (step_abs_path == NULL)
 			return (NULL);
 
-		return (abs_path);
+		return (step_abs_path);
 	}
 
-	while (ep != NULL)
+	while (path_node != NULL)
 	{
-		abs_path = _strdup(ep->str);
-		if (abs_path == NULL)
+		step_abs_path = _strdup(path_node->str);
+		if (step_abs_path == NULL)
 			return (NULL);
 
-		abs_path = _strcat_realloc(abs_path, tokens);
-		if (abs_path == NULL)
+		step_abs_path = _strcat_realloc(step_abs_path, tokens);
+		if (step_abs_path == NULL)
 			return (NULL);
 
-		status = access(abs_path, F_OK | X_OK);
+		status = access(step_abs_path, F_OK | X_OK);
 		if (status == 0)
-			return (abs_path);
-		free(abs_path);
-		ep = ep->next;
+			return (step_abs_path);
+		free(step_abs_path);
+		path_node = path_node->next;
 	}
 	return (NULL);
 }

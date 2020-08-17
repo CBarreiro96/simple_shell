@@ -49,7 +49,6 @@ int _exit_(char **token)
 			break;
 		}
 	}
-	printf("%s",token[1]);
 	exit_status = token[1] && i >= _strlen(token[1]) ? _atoi(token[1]) : 0;
 	exit(exit_status);
 	return (-1);
