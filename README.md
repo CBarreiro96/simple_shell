@@ -56,9 +56,7 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 |[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
 | [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It \
 is define the struct | holberton |
-| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | in this file ther are three function
-1) **_strlen:** fuction that retrun lenght of the argument.
-2) **_strncmp** | ---| 
+| [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | in this file ther are three function -- **_strlen:** fuction that retrun lenght of the argument.-- **_strncmp** | ---| 
 |[split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
 | [execution.c](https://github.com/CBarreiro96/simple_shell/blob/master/execution.c "Execution") | Contains the function to printf byte to byte (**write**) | --- | ---- |
 | [linkend_list_operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/linkend_list_operation.c "linkend list operation") | It contain to description about printf | |
