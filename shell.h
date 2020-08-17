@@ -61,7 +61,7 @@ char **split_line(char *nline);
 char *copy_token(char *nline);
 void print_errors(char **argv, char **tokens);
 int (*is_builtin(char *cmd))();
-int _exit_with_grace(char **tokens, env_t *linkedlist_path);
+int _exit_(char **tokens, env_t *linkedlist_path);
 int _atoi(char *s);
 int _isdigit(int c);
 
