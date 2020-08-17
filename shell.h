@@ -41,7 +41,7 @@ int execut(char **tokens, char **av, env_t *linkedlist_path);
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, size_t bytes);
 int _strlen_const(const char *s);
-void simple_print(void);
+void _prompt(void);
 char **split_line(char *nline);
 char *copy_token(char *nline);
 void print_errors(char **argv, char **tokens);

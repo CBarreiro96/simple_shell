@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * simple_print - print a promp in the terminal
+ * simple_print - print a prompt in the terminal
  * Return: void.
  *
  */
-void simple_print(void)
+void _prompt(void)
 {
 	write(STDOUT_FILENO, "Simple_shell $ ", 15);
 
