@@ -34,4 +34,3 @@ env_t *add_node(env_t **head, char *str, unsigned int len)
 	walk->next = new;
 	return (*head);
 }
-

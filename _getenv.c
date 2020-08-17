@@ -38,7 +38,7 @@ char *_getenv(const char *name)
 			}
 			return (tmp);
 		}
-		free(tmp);  /* estos return no creo que esten haciendo algo */
+		free(tmp);
 		tmp = NULL;
 	}
 	return (NULL);

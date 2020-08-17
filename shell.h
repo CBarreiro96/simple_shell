@@ -12,12 +12,11 @@
 /*To use enviroment variable we need to have this global variable*/
 extern char **environ;
 /**
- * struct environ_type - struct for linked list PATH
- * @str: a node
- * @len: size of node
- * @next: next node
- *
- */
+* struct environ_type - linked list from PATH
+* @str: path in the format /usr/bin
+* @len: length of the string
+* @next: points to the next node
+*/
 typedef struct environ_type
 {
 	char *str;
@@ -51,14 +50,14 @@ int execut(char **tokens, char **av, env_t *linkedlist_path);
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, size_t bytes);
 int _strlen_const(const char *s);
-void simple_print(void);
+void _prompt(const char *str);
 char **split_line(char *nline);
 char *copy_token(char *nline);
 void print_errors(char **argv, char **tokens);
 void free_main_memory(char *line, char *nline, char **tokens);
 void free_linked_list(env_t *head);
 int (*is_builtin(char *cmd))();
-int _exit_(char **tokens, env_t *linkedlist_path);
+int _exit_(char **tokens);
 int _atoi(char *s);
 int _isdigit(int c);
 

@@ -35,7 +35,7 @@ int (*is_builtin(char *cmd))()
  (* * CHANGE TO VARIADIC LIST.
   * Return: -1 if exit fails.
   */
-int _exit_(char **token, env_t *linkedlist_path)
+int _exit_(char **token)
 {
 	unsigned char exit_status;
 	int i;
@@ -45,19 +45,12 @@ int _exit_(char **token, env_t *linkedlist_path)
 		
 		if (!_isdigit(token[1][i]))
 		{
-			simple_print();
+			_prompt("numeric argument required, exiting\n");
 			break;
 		}
 	}
 	printf("%s",token[1]);
 	exit_status = token[1] && i >= _strlen(token[1]) ? _atoi(token[1]) : 0;
-	if (linkedlist_path && token)
-	{
-		free_linked_list(linkedlist_path);
-		linkedlist_path = NULL;
-		free(token);
-		token = NULL;
-	}
 	exit(exit_status);
 	return (-1);
 }
