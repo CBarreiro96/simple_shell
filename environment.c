@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
-  * list_from_path - builds a linked list from PATH
-  * Return: pointer to linked list
-  */
+* list_from_path - builds a linked list from PATH
+* Return: pointer to linked list
+*/
 env_t *list_from_path(void)
 {
 	unsigned int len, i, j;
@@ -50,9 +50,10 @@ env_t *environ_linked_list(void)
 	}
 	return (ep);
 }
+
 /**
   * search_os - search through os to find a command
-  * @cmd: command to search for
+  * @tokens: command to search for
   * @linkedlist_path: path to search through
   * Return: String to absolute path if found, NULL if not
   */
@@ -87,5 +88,5 @@ char *search_os(char *tokens, env_t *linkedlist_path)
 		free(abs_path);
 		ep = ep->next;
 	}
-	return (NULL);
+	return (0);
 }
