@@ -1,17 +1,13 @@
 #include "shell.h"
 /**
- * split_line - splits a line into tokens and stores into a char * array
- * @nline: the line string to split
- *
- * Return: the array of pointers
- */
+* split_line - splits a line into tokens and stores into a char array
+* @nline: the line string to split
+* Return: the array of pointers
+*/
 char **split_line(char *nline)
 {
-
-	int i = 0;
-	int counter_token = 0;
-	char **array_of_token;
-	char *token, *tokencopy;
+	int counter_token, i = 0;
+	char **array_of_token, *token, *tokencopy;
 
 	if (nline == NULL)
 		return (NULL);
@@ -23,15 +19,19 @@ char **split_line(char *nline)
 			counter_token++;
 		i++;
 	}
-
-	i = 0;
 	array_of_token = malloc(sizeof(char *) * (counter_token + 1));
 	if (array_of_token == NULL)
 		return (NULL);
-
+	/**
+	* Split the line into tokens and return a pointer to the first
+	* character of the first token
+	**/
 	token = strtok(nline, DELIMS);
-
-	while (token != NULL)
+	/**
+	* This loop copies the content of each token and stores the one-touch
+	* content in one of the previously pointers.
+	**/
+	for (i = 0 ; token != NULL ; i++)
 	{
 		tokencopy = copy_token(token);
 		if (tokencopy == NULL)
@@ -41,7 +41,6 @@ char **split_line(char *nline)
 		}
 		*(array_of_token + i) = tokencopy;
 		token = strtok(NULL, DELIMS);
-		i++;
 	}
 	*(array_of_token + i) = NULL;
 

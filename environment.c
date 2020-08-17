@@ -1,8 +1,8 @@
 #include "shell.h"
 /**
-  * list_from_path - builds a linked list from PATH
-  * Return: pointer to linked list
-  */
+* list_from_path - builds a linked list from PATH
+* Return: pointer to linked list
+*/
 env_t *list_from_path(void)
 {
 	unsigned int len, i, j;
@@ -54,6 +54,7 @@ env_t *environ_linked_list(void)
 	}
 	return (ep);
 }
+
 /**
   * search_os - search through os to find a command
   * @tokens: command to search for

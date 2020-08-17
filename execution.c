@@ -4,9 +4,12 @@
  * Return: void.
  *
  */
-void _prompt(void)
+void _prompt(const char *str)
 {
-	write(STDOUT_FILENO, "Simple_shell $ ", 15);
+	int len;
+
+	len = _strlen_const(str);
+	write(STDOUT_FILENO, str, len);
 
 }
 /**
