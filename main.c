@@ -41,13 +41,13 @@ int main(int ac, char **av)
 			return (0);
 		}
 
-		
-		execut(token, av, linkedlist_path);
 		if (is_builtin(token[0]))
-				is_builtin(token[0])(token, linkedlist_path);
+			is_builtin(token[0])(token, linkedlist_path);
+		else
+			execut(token, av, linkedlist_path);
+
 		free_main_memory(line, new_line, token);
 	}
-		free_linked_list(linkedlist_path);
 	return (0);
 }
 

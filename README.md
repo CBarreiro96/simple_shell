@@ -50,6 +50,14 @@ If you would like to have this program you need to clone this repositories:
 ```
 git clone https://github.com/CBarreiro96/simple_shell/tree/master
 ```
+## Compilation
+```
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+```
+After this Compilation you need to execute this command, you need to write the next in your terminal:
+```
+$ ./hsh
+```
 ## Interactive-mode
 ```
 $ ./hsh
@@ -74,10 +82,6 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
-## Compilation
-```
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-```
 
 ## :gem: File description :gem:
 | File | Description | Flowcharts |

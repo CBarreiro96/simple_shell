@@ -42,6 +42,7 @@ char **split_line(char *nline)
 		*(array_of_token + i) = tokencopy;
 		token = strtok(NULL, DELIMS);
 	}
+
 	*(array_of_token + i) = NULL;
 
 	return (array_of_token);

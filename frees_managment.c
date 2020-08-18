@@ -30,12 +30,10 @@ void free_main_memory(char *line, char *nline, char **tokens)
   */
 void free_linked_list(env_t *head)
 {
-	env_t *nodes;
-
-	while (head != NULL)
-	{
-		nodes = head->next;
-		free(head);
-		head = nodes;
-	}
+	if (head == NULL)
+		return;
+	free_linked_list(head->next);
+	free(head->str);
+	free(head);
 }
+
