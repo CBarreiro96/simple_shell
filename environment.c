@@ -7,8 +7,8 @@ env_t *list_from_path(void)
 {
 	unsigned int len, i, j;
 	char *env;
-	char buffer[BUFSIZE]; /*1024*/
-	env_t *ep; /*struc*/
+	char buffer[BUFSIZE];
+	env_t *ep;
 
 	ep = NULL;
 	len = i = j = 0;
