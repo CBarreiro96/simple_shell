@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* main - simula a shell program.
+* main - simulate a shell program.
 * @ac: the number of arguments passed.
 * @av: string of the arguments.
 * Return: 0 if is secessful.
@@ -9,8 +9,9 @@ int main(int ac, char **av)
 {
 	char *line, *new_line, **token;
 	size_t size = 0;
-	ssize_t characters;
+	ssize_t characters = 0;
 	env_t *linkedlist_path;
+	int counter = 0;
 
 	linkedlist_path = list_from_path();
 	if (linkedlist_path == NULL)
@@ -18,9 +19,9 @@ int main(int ac, char **av)
 	(void)ac;
 	while (1)
 	{
+		counter += 1;
 		if (isatty(STDIN_FILENO) == 1)
 			_prompt("Simple_shell $ ");
-
 		characters = getline(&line, &size, stdin);
 		if (characters == EOF || characters == -1)
 		{
@@ -40,11 +41,9 @@ int main(int ac, char **av)
 			free(new_line);
 			return (0);
 		}
-
-		
-		execut(token, av, linkedlist_path);
 		if (is_builtin(token[0]))
 				is_builtin(token[0])(token, linkedlist_path);
+		execut(token, av, linkedlist_path, counter);
 		free_main_memory(line, new_line, token);
 	}
 		free_linked_list(linkedlist_path);

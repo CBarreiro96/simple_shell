@@ -46,19 +46,20 @@ void *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 void _memset(char *str, int fill, int n);
 void _memcpy(char *dest, char *src, unsigned int bytes);
 char *new_memory(char *line, size_t len);
-int execut(char **tokens, char **av, env_t *linkedlist_path);
+int execut(char **tokens, char **av, env_t *linkedlist_path, int c);
 int _strlen(char *s);
 int _strncmp(char *s1, char *s2, size_t bytes);
 int _strlen_const(const char *s);
 void _prompt(const char *str);
 char **split_line(char *nline);
 char *copy_token(char *nline);
-void print_errors(char **argv, char **tokens);
+void print_errors(char **argv, char **tokens, int c);
 void free_main_memory(char *line, char *nline, char **tokens);
 void free_linked_list(env_t *head);
 int (*is_builtin(char *cmd))();
 int _exit_(char **tokens);
 int _atoi(char *s);
 int _isdigit(int c);
+char *intiger_to_string(int c);
 
 #endif /* End of _SHELL_H */
