@@ -45,7 +45,7 @@ int main(int ac, char **av)
 		if (is_builtin(token[0]))
 			is_builtin(token[0])(token, linkedlist_path);
 		else
-			execut(token, av, linkedlist_path);
+			execut(token, av, linkedlist_path, counter);
 
 		free_main_memory(line, new_line, token);
 	}
