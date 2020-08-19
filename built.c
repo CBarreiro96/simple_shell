@@ -25,13 +25,14 @@ int (*is_builtin(char *cmd))()
 			return (builds[i].function);
 		i++;
 	}
+
+
 	return (NULL);
 }
 /**
-  * _exit_with_grace - Frees any remaining malloc'd spaces, and exits
+  * _exit_ - Frees any remaining malloc'd spaces, and exits
   * @linkedlist_path: Linked list to free.
-  * @buffer: buffer to free
-  * @tokens: Check for other inputs
+  * @token: Check for other inputs
  (* * CHANGE TO VARIADIC LIST.
   * Return: -1 if exit fails.
   */
@@ -55,7 +56,7 @@ int _exit_(char **token, env_t *linkedlist_path)
 		free_linked_list(linkedlist_path);
 		linkedlist_path = NULL;
 	}
-	printf("Exit %d\n",exit_status);
+	printf("Exit %d\n", exit_status);
 	exit(exit_status);
 	return (-1);
 }
