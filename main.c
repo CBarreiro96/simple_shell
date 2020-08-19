@@ -45,6 +45,5 @@ int main(int ac, char **av)
 		else
 			execut(token, av, linkedlist_path, counter, line, new_line);
 	}
-	free_linked_list(linkedlist_path), free_main_memory(line, new_line, token);
 	return (0);
 }

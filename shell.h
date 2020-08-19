@@ -57,7 +57,7 @@ void print_errors(char **argv, char **tokens, int c, char *line, char *nline);
 void free_main_memory(char *line, char *nline, char **tokens);
 void free_linked_list(env_t *head);
 int (*is_builtin(char *cmd))();
-int _exit_(char **tokens, env_t *linkedlist_path);
+int _exit_(char **tokens, env_t *linkedlist_path,char *line, char *new_line);
 int _atoi(char *s);
 int _isdigit(int c);
 char *intiger_to_string(int c);

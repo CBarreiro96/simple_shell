@@ -11,8 +11,11 @@ void free_main_memory(char *line, char *nline, char **tokens)
 {
 	free_tokens(tokens);
 	free(line);
+	line=NULL;
 	free(nline);
+	nline=NULL;
 	free(tokens);
+	tokens= NULL;
 }
 
 /**

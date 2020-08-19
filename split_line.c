@@ -6,7 +6,7 @@
 */
 char **split_line(char *nline)
 {
-	int counter_token, i = 0;
+	int counter_token = 0, i = 0;
 	char **array_of_token, *token, *tokencopy;
 
 	if (nline == NULL)

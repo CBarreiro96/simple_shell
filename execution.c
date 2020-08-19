@@ -29,7 +29,6 @@ int execut(char **tokens, char **av, env_t *linkedlist_path,
 {
 	pid_t m_PID;
 	char *abs_path;
-	int i = 0;
 
 	if (tokens == NULL || *tokens == NULL)
 		return (-1);
