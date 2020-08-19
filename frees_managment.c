@@ -9,17 +9,10 @@
  */
 void free_main_memory(char *line, char *nline, char **tokens)
 {
-	int i = 0;
-
-	while (tokens[i] != NULL)
-	{
-		free(tokens[i]);
-		i++;
-	}
-	free(tokens[i]);
-	free(tokens);
-	free(nline);
+	free_tokens(tokens);
 	free(line);
+	free(nline);
+	free(tokens);
 }
 
 /**
@@ -30,10 +23,32 @@ void free_main_memory(char *line, char *nline, char **tokens)
   */
 void free_linked_list(env_t *head)
 {
-	if (head == NULL)
-		return;
-	free_linked_list(head->next);
-	free(head->str);
-	free(head);
-}
+	env_t *nextnode;
 
+	while (head != NULL)
+	{
+		nextnode = head->next;
+		free(head->str);
+		free(head);
+		head = nextnode;
+	}
+}
+/**
+  * free_tokens - free all tokens
+  * @tokens: beginning of the list
+  *
+  * Return: void
+  */
+
+void free_tokens(char **tokens)
+{
+
+	int i = 0;
+
+	while (tokens[i] != NULL)
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens[i]);
+}

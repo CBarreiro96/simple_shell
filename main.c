@@ -19,7 +19,7 @@ int main(int ac, char **av)
 	(void)ac;
 	while (1)
 	{
-		counter += 1;
+		counter++;
 		if (isatty(STDIN_FILENO) == 1)
 			_prompt("Simple_shell $ ");
 		characters = getline(&line, &size, stdin);
@@ -37,18 +37,14 @@ int main(int ac, char **av)
 		token = split_line(new_line);
 		if (token == NULL)
 		{
-			free(line);
-			free(new_line);
+			free(line), free(new_line);
 			return (0);
 		}
-
 		if (is_builtin(token[0]))
 			is_builtin(token[0])(token, linkedlist_path);
 		else
-			execut(token, av, linkedlist_path, counter);
-
-		free_main_memory(line, new_line, token);
+			execut(token, av, linkedlist_path, counter, line, new_line);
 	}
+	free_linked_list(linkedlist_path), free_main_memory(line, new_line, token);
 	return (0);
 }
-
