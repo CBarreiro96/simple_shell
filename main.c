@@ -7,9 +7,8 @@
 */
 int main(int ac, char **av)
 {
-	char *line, *new_line, **token;
-	size_t size = 0;
-	ssize_t characters = 0;
+	char *new_line, **token, *saveptr;
+	char *characters = 0;
 	env_t *linkedlist_path;
 	int counter = 0;
 
@@ -22,28 +21,25 @@ int main(int ac, char **av)
 		counter++;
 		if (isatty(STDIN_FILENO) == 1)
 			_prompt("Simple_shell $ ");
-		characters = getline(&line, &size, stdin);
-		if (characters == EOF || characters == -1)
+		characters = _getline_string(STDIN_FILENO);
+		if (characters == NULL)
 		{
-			free(line);
-			return (0);
+			free(characters);
+			return (127);
 		}
-		new_line = new_memory(line, characters);
-		if (new_line == NULL)
+		new_line = _strtok_r(characters, "\n;", &saveptr);
+		while(new_line)
 		{
-			free(line);
-			return (0);
+			token=split_line(new_line,"\t ");
+			if (is_builtin(token[0]))
+				is_builtin(token[0])(token, linkedlist_path,new_line);
+			else
+				execut(token, av, linkedlist_path, counter);
+			free(token);
+			new_line = _strtok_r(NULL, "\n;", &saveptr);
 		}
-		token = split_line(new_line);
-		if (token == NULL)
-		{
-			free(line), free(new_line);
-			return (0);
-		}
-		if (is_builtin(token[0]))
-			is_builtin(token[0])(token, linkedlist_path);
-		else
-			execut(token, av, linkedlist_path, counter, line, new_line);
+	free(characters);
+		
 	}
 	return (0);
 }

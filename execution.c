@@ -25,7 +25,7 @@ void _prompt(char *str)
  * Return: 0 if success -1 if fail
  */
 int execut(char **tokens, char **av, env_t *linkedlist_path,
-			 int c, char *line, char *nline)
+			 int c)
 {
 	pid_t m_PID;
 	char *abs_path;
@@ -50,7 +50,7 @@ int execut(char **tokens, char **av, env_t *linkedlist_path,
 	else if (m_PID == 0)
 	{
 		if (execve(abs_path, tokens, environ) == -1)
-			print_errors(av, tokens, c, line, nline);
+			print_errors(av, tokens, c);
 		return (0);
 	}
 

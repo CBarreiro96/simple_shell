@@ -4,10 +4,10 @@
 * @nline: the line string to split
 * Return: the array of pointers
 */
-char **split_line(char *nline)
+char **split_line(char *nline, char *delimit)
 {
 	int counter_token = 0, i = 0;
-	char **array_of_token, *token, *tokencopy;
+	char **array_of_token, *token,*saveptr;
 
 	if (nline == NULL)
 		return (NULL);
@@ -26,24 +26,10 @@ char **split_line(char *nline)
 	* Split the line into tokens and return a pointer to the first
 	* character of the first token
 	**/
-	token = strtok(nline, DELIMS);
-	/**
-	* This loop copies the content of each token and stores the one-touch
-	* content in one of the previously pointers.
-	**/
-	for (i = 0 ; token != NULL ; i++)
-	{
-		tokencopy = copy_token(token);
-		if (tokencopy == NULL)
-		{
-			free(array_of_token);
-			return (NULL);
-		}
-		*(array_of_token + i) = tokencopy;
-		token = strtok(NULL, DELIMS);
-	}
-
-	*(array_of_token + i) = NULL;
+	array_of_token[0] = token = _strtok_r(nline, delimit, &saveptr);
+	
+	for (i = 1; token; i++)
+		array_of_token[i] = token = _strtok_r(NULL, delimit, &saveptr);
 
 	return (array_of_token);
 }

@@ -36,7 +36,7 @@ int (*is_builtin(char *cmd))()
  (* * CHANGE TO VARIADIC LIST.
   * Return: -1 if exit fails.
   */
-int _exit_(char **token, env_t *linkedlist_path,char *line, char *new_line)
+int _exit_(char **token, env_t *linkedlist_path, char *new_line)
 {
 	unsigned char exit_status;
 	int i;
@@ -51,11 +51,14 @@ int _exit_(char **token, env_t *linkedlist_path,char *line, char *new_line)
 	}
 
 	exit_status = token[1] && i >= _strlen(token[1]) ? _atoi(token[1]) : 0;
-	if (linkedlist_path && token && line && new_line)
+	if (linkedlist_path && token &&  new_line)
 	{
 		free_linked_list(linkedlist_path);
 		linkedlist_path = NULL;
-		free_main_memory(line, new_line, token);
+		free(token);
+		token = NULL;
+		free(new_line);
+		new_line= NULL;
 	}
 	exit(exit_status);
 	return (-1);

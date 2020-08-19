@@ -9,7 +9,7 @@
 * Return: Void.
 */
 
-void print_errors(char **argv, char **tokens, int c, char *line, char *nline)
+void print_errors(char **argv, char **tokens, int c)
 {
 	char *counter;
 
@@ -21,9 +21,7 @@ void print_errors(char **argv, char **tokens, int c, char *line, char *nline)
 	write(STDOUT_FILENO, ": ", 2);
 	write(STDOUT_FILENO, tokens[0], _strlen(tokens[0]));
 	write(STDOUT_FILENO, ": not found\n", 12);
-	free(counter);
-	free_main_memory(line, nline, tokens);
-	exit(0);
+
 }
 
 /**
