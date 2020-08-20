@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
- * simple_print - print a prompt in the terminal
+ * _prompt - print a prompt in the terminal
+ * @str: is a message that print
  * Return: void.
  *
  */
@@ -18,13 +19,17 @@ void _prompt(char *str)
  * @av: name of the executable
  * @linkedlist_path: current enviroment
  * @c:number of time that hsh run.
+ * @line: line given for user
+ * @nline: new line without /n
  *
  * Return: 0 if success -1 if fail
  */
-int execut(char **tokens, char **av, env_t *linkedlist_path, int c)
+int execut(char **tokens, char **av, env_t *linkedlist_path,
+			 int c, char *line, char *nline)
 {
 	pid_t m_PID;
 	char *abs_path;
+	int i = 0;
 
 	if (tokens == NULL || *tokens == NULL)
 		return (-1);
@@ -46,8 +51,7 @@ int execut(char **tokens, char **av, env_t *linkedlist_path, int c)
 	else if (m_PID == 0)
 	{
 		if (execve(abs_path, tokens, environ) == -1)
-			print_errors(av, tokens, c);
-		return (0);
+			print_errors(av, tokens, c, line, nline);
 	}
 
 	else
