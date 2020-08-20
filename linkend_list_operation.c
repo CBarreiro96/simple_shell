@@ -20,7 +20,7 @@ env_t *add_node(env_t **head, char *str, unsigned int len)
 	if (new == NULL)
 		return (NULL);
 	new->str = dupstr;
-	new->len = len;
+		new->len = len;
 	new->next = NULL;
 
 	if (*head == NULL)

@@ -1,18 +1,5 @@
 #include "shell.h"
 /**
- * _strlen_const - strlen for const strings
- * @s: string to be measured
- * Return: length of string
- */
-int _strlen_const(const char *s)
-{
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-		;
-	return (i);
-}
-/**
  * _strlen - replicates strlen from the standard library
  * @s: string to be measured
  * Return: length of string
@@ -21,7 +8,7 @@ int _strlen(char *s)
 {
 	int i;
 
-	for (i = 0; *s; s++, i++)
+	for (i = 0; *(s + i) != '\0'; i++)
 		;
 	return (i);
 }

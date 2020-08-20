@@ -25,32 +25,38 @@ int (*is_builtin(char *cmd))()
 			return (builds[i].function);
 		i++;
 	}
+
+
 	return (NULL);
 }
 /**
-  * _exit_with_grace - Frees any remaining malloc'd spaces, and exits
+  * _exit_ - Frees any remaining malloc'd spaces, and exits
   * @linkedlist_path: Linked list to free.
-  * @buffer: buffer to free
-  * @tokens: Check for other inputs
+  * @token: Check for other inputs
  (* * CHANGE TO VARIADIC LIST.
   * Return: -1 if exit fails.
   */
-int _exit_(char **token)
+int _exit_(char **token, env_t *linkedlist_path)
 {
 	unsigned char exit_status;
 	int i;
 
 	for (i = 0; token[1] && token[1][i]; i++)
 	{
-		
 		if (!_isdigit(token[1][i]))
 		{
 			_prompt("numeric argument required, exiting\n");
 			break;
 		}
 	}
-	printf("%s",token[1]);
+
 	exit_status = token[1] && i >= _strlen(token[1]) ? _atoi(token[1]) : 0;
+	if (linkedlist_path && token)
+	{
+		free_linked_list(linkedlist_path);
+		linkedlist_path = NULL;
+	}
+	printf("Exit %d\n", exit_status);
 	exit(exit_status);
 	return (-1);
 }
