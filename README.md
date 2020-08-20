@@ -86,10 +86,9 @@ $
 ## :gem: File description :gem:
 | File | Description | Flowcharts |
 | :---: | :---: | :---: |
-| [main.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/main.c "Principal Function") | Contains the principal of execution | (Flowchart) |
+| [main.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/main.c "Principal Function") | Contains the principal of execution | [flowchart main](https://github.com/CBarreiro96/simple_shell/blob/master/imagenes/readme1.png "mainflowchart") |
 |[environment.c](https://github.com/CBarreiro96/simple_shell/blob/Camilo/environment.c "variable environment") | In this file get variable enviroment | flowchart |
-| [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It \
-is define the struct | holberton |
+| [memory_managment.c](https://github.com/CBarreiro96/simple_shell/blob/master/memory_managment.c "Header") | Contains the libraries of proyect and It is define the struct |[flowchart new_memory](https://github.com/CBarreiro96/simple_shell/blob/master/imagenes/readme2.png "new_memoryflowchart")|
 | [Operation.c](https://github.com/CBarreiro96/simple_shell/blob/master/operation.c "Operation system") | In this file ther are three function: :sunflower:   **_strlen:** " *fuction that return lenght of the argument*" :sunflower: **_strncmp=**" **int strncmp(const char *str1, const char *str2, size_t n)** _compares at most the first n bytes of str1 and str2_ " :sunflower: **_strcat_realloc**| ---| 
 |[split_line.c](https://github.com/CBarreiro96/simple_shell/blob/master/split_line.c "Function Flowchart") | blbla | | 
 | [execution.c](https://github.com/CBarreiro96/simple_shell/blob/master/execution.c "Execution") | ---- | --- | ---- |
