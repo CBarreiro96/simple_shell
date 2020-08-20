@@ -30,12 +30,13 @@ int (*is_builtin(char *cmd))()
 	return (NULL);
 }
 /**
-  * _exit_ - Frees any remaining malloc'd spaces, and exits
-  * @linkedlist_path: Linked list to free.
-  * @token: Check for other inputs
- (* * CHANGE TO VARIADIC LIST.
-  * Return: -1 if exit fails.
-  */
+* _exit_ - Frees any remaining malloc'd spaces, and exits
+* @linkedlist_path: Linked list to free.
+* @token: Check for other inputs
+*@new_line:Pointer to store variable.
+* CHANGE TO VARIADIC LIST.
+* Return: -1 if exit fails.
+*/
 int _exit_(char **token, env_t *linkedlist_path, char *new_line)
 {
 	unsigned char exit_status;
@@ -58,7 +59,7 @@ int _exit_(char **token, env_t *linkedlist_path, char *new_line)
 		free(token);
 		token = NULL;
 		free(new_line);
-		new_line= NULL;
+		new_line = NULL;
 	}
 	exit(exit_status);
 	return (-1);

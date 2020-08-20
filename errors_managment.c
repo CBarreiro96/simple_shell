@@ -4,8 +4,6 @@
 * @argv:string of the arguments.
 * @c:number of time that hsh run.
 * @tokens: Command to put error.
-* @line: line given for user
-* @nline: line without /n
 * Return: Void.
 */
 
@@ -21,7 +19,8 @@ void print_errors(char **argv, char **tokens, int c)
 	write(STDOUT_FILENO, ": ", 2);
 	write(STDOUT_FILENO, tokens[0], _strlen(tokens[0]));
 	write(STDOUT_FILENO, ": not found\n", 12);
-
+	free(counter);
+	free(tokens);
 }
 
 /**

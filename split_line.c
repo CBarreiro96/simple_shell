@@ -2,12 +2,13 @@
 /**
 * split_line - splits a line into tokens and stores into a char array
 * @nline: the line string to split
+*@delimit:It is delimiter about the array.
 * Return: the array of pointers
 */
 char **split_line(char *nline, char *delimit)
 {
 	int counter_token = 0, i = 0;
-	char **array_of_token, *token,*saveptr;
+	char **array_of_token, *token, *saveptr;
 
 	if (nline == NULL)
 		return (NULL);
@@ -27,7 +28,7 @@ char **split_line(char *nline, char *delimit)
 	* character of the first token
 	**/
 	array_of_token[0] = token = _strtok_r(nline, delimit, &saveptr);
-	
+
 	for (i = 1; token; i++)
 		array_of_token[i] = token = _strtok_r(NULL, delimit, &saveptr);
 

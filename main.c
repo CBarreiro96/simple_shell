@@ -28,18 +28,17 @@ int main(int ac, char **av)
 			return (127);
 		}
 		new_line = _strtok_r(characters, "\n;", &saveptr);
-		while(new_line)
+		while (new_line)
 		{
-			token=split_line(new_line,"\t ");
+			token = split_line(new_line, "\t ");
 			if (is_builtin(token[0]))
-				is_builtin(token[0])(token, linkedlist_path,new_line);
+				is_builtin(token[0])(token, linkedlist_path, new_line);
 			else
 				execut(token, av, linkedlist_path, counter);
 			free(token);
 			new_line = _strtok_r(NULL, "\n;", &saveptr);
 		}
 	free(characters);
-		
 	}
 	return (0);
 }

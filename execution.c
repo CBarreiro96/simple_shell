@@ -19,13 +19,10 @@ void _prompt(char *str)
  * @av: name of the executable
  * @linkedlist_path: current enviroment
  * @c:number of time that hsh run.
- * @line: line given for user
- * @nline: new line without /n
- *
+
  * Return: 0 if success -1 if fail
  */
-int execut(char **tokens, char **av, env_t *linkedlist_path,
-			 int c)
+int execut(char **tokens, char **av, env_t *linkedlist_path, int c)
 {
 	pid_t m_PID;
 	char *abs_path;
