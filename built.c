@@ -1,62 +1,194 @@
+#include <limits.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "shell.h"
+
 /**
-  * is_builtin - checks if cmd is a builtin
-  * @cmd: command to find
-  * Return: On success - pointer to function, On Failure - NULL pointer
- (* other useful shell builtins:
- (* pwd, echo, pushd, popd, type
- (* * requires ^Z
- (* fg, bg
- (*  * Requires ^Rv
- (* reverse-i-search **HISTORY**
-*/
-int (*is_builtin(char *cmd))()
+ * _exit_cmd - built in command exit
+ * @shpack: struct containing shell info
+ *
+ * Return: -1 if error
+ */
+ssize_t _exit_cmd(hshpack *shpack)
 {
-	unsigned int i;
-	builtin_cmds_t builds[] = {
-		{"exit", _exit_},
-		{NULL, NULL}
-	};
+	long valueToExit;
 
-	i = 0;
-	while (*builds[i].function != NULL)
+	if (shpack->options[1] == NULL || _isnumber(shpack->options[1]))
 	{
-		if (_strncmp(builds[i].cmd_str, cmd, _strlen(builds[i].cmd_str)) == 0)
-			return (builds[i].function);
-		i++;
-	}
+		valueToExit = _atoi(shpack->options[1]);
 
-
-	return (NULL);
-}
-/**
-  * _exit_ - Frees any remaining malloc'd spaces, and exits
-  * @linkedlist_path: Linked list to free.
-  * @token: Check for other inputs
- (* * CHANGE TO VARIADIC LIST.
-  * Return: -1 if exit fails.
-  */
-int _exit_(char **token, env_t *linkedlist_path)
-{
-	unsigned char exit_status;
-	int i;
-
-	for (i = 0; token[1] && token[1][i]; i++)
-	{
-		if (!_isdigit(token[1][i]))
+		if (valueToExit >= 0 && valueToExit < INT_MAX)
 		{
-			_prompt("numeric argument required, exiting\n");
-			break;
+			if (valueToExit > 255)
+				valueToExit %= 256;
+			if (shpack->options[1] == NULL)
+				valueToExit = shpack->exitnum[0];
+			free(*(shpack->options));
+			free(shpack->options);
+			if (*(shpack->envCpy))
+				free_doubpoint(*(shpack->envCpy));
+			free(shpack);
+			exit(valueToExit);
 		}
 	}
 
-	exit_status = token[1] && i >= _strlen(token[1]) ? _atoi(token[1]) : 0;
-	if (linkedlist_path && token)
-	{
-		free_linked_list(linkedlist_path);
-		linkedlist_path = NULL;
-	}
-	printf("Exit %d\n", exit_status);
-	exit(exit_status);
+	_error(2, shpack, 2);
+	free(shpack->options);
 	return (-1);
+}
+/**
+ * _env_cmd - built in command env
+ * @shpack: struct containing shell info
+ *
+ * Return: 1 if succesful
+ */
+ssize_t _env_cmd(hshpack *shpack)
+{
+	char **str;
+	int check = 1;
+
+	if (*(shpack->envCpy) == NULL)
+	{
+		write(2, "Environment is Null, Can't Print it\n", 36);
+		shpack->exitnum[0] = 2;
+		free(shpack->options);
+		return (-1);
+	}
+
+	str = *(shpack->envCpy);
+
+	if (shpack->options[1] == NULL)
+	{
+		for (; str && *str; str++)
+		{
+			write(1, *str, _strlen(*str));
+			write(1, "\n", 1);
+		}
+	}
+	else
+	{
+		_error(0, shpack, 2);
+		check = -1;
+	}
+
+	free(shpack->options);
+	return (check);
+}
+/**
+ * _setenv_cmd - built in command setenv
+ * @shpack: struct containing shell info
+ *
+ * Return: 1 if succesful, -1 if fail
+ */
+ssize_t _setenv_cmd(hshpack *shpack)
+{
+	char **newenv;
+	char *variable = NULL;
+	char *value = NULL;
+
+	if (shpack->options[1])
+	{
+		variable = shpack->options[1];
+		if (!shpack->options[2])
+		{
+			write(2, "Invalid VALUE\n", 14);
+			shpack->exitnum[0] = 2;
+			free(shpack->options);
+			return (-1);
+		}
+		else
+			value = shpack->options[2];
+
+	}
+	if (variable == 0)
+	{
+		write(2, "Invalid VARIABLE\n", 17);
+		shpack->exitnum[0] = 2;
+		free(shpack->options);
+		return (-1);
+	}
+
+	newenv = _setenv(*(shpack->envCpy), variable, value, shpack);
+
+	if (newenv == 0)
+	{
+		free(shpack->options);
+		return (-1);
+	}
+
+	*(shpack->envCpy) = newenv;
+	free(shpack->options);
+	return (1);
+}
+/**
+ * _unsetenv_cmd - built in command unsetenv
+ * @shpack: struct containing shell info
+ *
+ * Return: 1 if succesful, -1 if fail
+ */
+ssize_t _unsetenv_cmd(hshpack *shpack)
+{
+	char **newenv;
+	char *variable = NULL;
+
+	if (shpack->options[1])
+		variable = shpack->options[1];
+	else
+	{
+		shpack->exitnum[0] = 2;
+		write(2, "Please provide an argument\n", 27);
+		return (free(shpack->options), -1);
+	}
+
+	if (variable == 0)
+	{
+		free(shpack->options);
+		return (1);
+	}
+
+	newenv = _unsetenv(*(shpack->envCpy), variable, shpack);
+
+	if (newenv == 0 && shpack->unsetnull[0] == 0)
+	{
+		free(shpack->options);
+		shpack->exitnum[0] = 2;
+		return (-1);
+	}
+
+	*(shpack->envCpy) = newenv;
+	free(shpack->options);
+	return (1);
+}
+
+/**
+ * built_ints - checks if cmd is a built in
+ * @shpack: struct containing shell info
+ *
+ * Return: On fail 0
+ */
+ssize_t built_ints(hshpack *shpack)
+{
+	b_ins ops[] = {
+		{"exit", _exit_cmd},
+		{"env", _env_cmd},
+		{"setenv", _setenv_cmd},
+		{"unsetenv", _unsetenv_cmd},
+		{"cd", _cd_cmd}
+	};
+
+	int i = 6, builtcheck; /* lenght of ops array */
+
+	while (i--)
+		if (!_strcmp(shpack->cmd, ops[i].cmd))
+		{
+			shpack->errnum[0] += 1;
+			builtcheck = ops[i].f(shpack);
+			if (builtcheck == 1)
+				shpack->exitnum[0] = 0;
+			return (builtcheck);
+		}
+
+	return (0);
 }

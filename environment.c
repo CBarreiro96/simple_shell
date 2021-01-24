@@ -1,102 +1,110 @@
 #include "shell.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 /**
-* list_from_path - builds a linked list from PATH
-* Return: pointer to linked list
-*/
-env_t *list_from_path(void)
+ * _pathcheck - check if current dir must be added
+ * @path: path env variable
+ *
+ * Return: Pointer to adress of new PATH
+ *
+ */
+
+char *_pathcheck(char *path)
 {
-	unsigned int len, i, j;
-	char *env;
-	char buffer[BUFSIZE];
-	env_t *ep;
+	char *npath;
+	int i, j, nsize, count = 0;
 
-	ep = NULL;
-	len = i = j = 0;
-
-	env = _getenv("PATH");
-	if (env == NULL)
-		return (NULL);
-
-	while (*env)
+	for (i = 0; path[i]; i++)
 	{
-		buffer[j++] = *env;
-		len++;
 
-		if (*env == ':')
+		if (path[i] == '=' && path[i + 1] == ':')
+			count++;
+		if (path[i] == ':' && path[i + 1] == ':')
+			count++;
+		if (path[i] == ':' && path[i + 1] == '\0')
+			count++;
+	}
+	if (count == 0)
+		return (0);
+	nsize = _strlen(path) + 1 + count;
+	npath = malloc(sizeof(char) * nsize);
+
+	for (i = 0, j = 0; i < nsize; i++, j++)
+	{
+		if (path[j] == '=' && path[j + 1] == ':')
 		{
-			len--;
-			buffer[j - 1] = '/';
-			buffer[j] = '\0';
-			add_node(&ep, buffer, len);
-			len = j = 0;
+			npath[i] = path[j], npath[i + 1] = '.', i++;
+			continue;
 		}
-		env++;
+		if (path[j] == ':' && path[j + 1] == ':')
+		{
+			npath[i] = path[j], npath[i + 1] = '.', i++;
+			continue;
+		}
+		if (path[j] == ':' && path[j + 1] == '\0')
+		{
+			npath[i] = path[j], npath[i + 1] = '.', i++;
+			continue;
+		}
+		npath[i] = path[j];
 	}
-	return (ep);
+	free(path);
+	return (npath);
 }
 /**
-  * environ_linked_list - builds a linked list from PATH
-  * Return: pointer to linked list
-  */
-env_t *environ_linked_list(void)
+ * _path - Searches for a cmd in PATH
+ * @cmd: string contating env variable PATH
+ * @env: current environment
+ * @shpack: struct containing shell info
+ *
+ * Return: Pointer to adress of cmd in PATH or by itself
+ *
+ */
+
+char *_path(char *cmd, char **env, hshpack *shpack)
 {
-	int i, j;
-	char **env;
-	env_t *ep;
+	char *path, *path2;
+	struct stat st;
+	char *token, *concat, *concat2, *pathcheck, *delim = ":=";
+	int i;
 
-	ep = NULL;
-	i = j = 0;
-	env = environ;
-	while (env[i])
+	for (i = 0; cmd[i]; i++)
+		if (cmd[i] == '/')
+		{
+			if (stat(cmd, &st) == 0)
+				return (concat = str_concat(cmd, '\0'));
+			else
+				return (0);
+		}
+
+	path2 = _getenv("PATH", env);
+	(void) shpack;
+	if (!path2)
+		return (0);
+	path = _strdup(path2);
+	pathcheck = _pathcheck(path);
+	if (pathcheck)
+		path = pathcheck;
+	token = _strtok(path, delim);
+	for (token = _strtok(0, delim); token; token = _strtok(0, delim))
 	{
-		add_node(&ep, env[i], (unsigned int)_strlen(env[i]));
-		i++;
-	}
-	return (ep);
-}
-
-/**
-  * search_os - search through os to find a command
-  * @tokens: command to search for
-  * @linkedlist_path: path to search through
-  * Return: String to absolute path if found, NULL if not
-  */
-char *search_os(char *tokens, env_t *linkedlist_path)
-{
-	int status;
-	char *step_abs_path;
-	env_t *path_node;
-
-	path_node = linkedlist_path;
-	if (path_node == NULL || tokens == NULL)
-		return (NULL);
-
-	if ((_strncmp(tokens, "/", 1) == 0
-			|| _strncmp(tokens, "./", 2) == 0)
-			&& access(tokens, F_OK | X_OK) == 0)
-	{
-		step_abs_path = tokens;
-		if (step_abs_path == NULL)
-			return (NULL);
-
-		return (step_abs_path);
+		concat = str_concat(token, "/");
+		concat2 = str_concat(concat, cmd);
+		free(concat);
+		if (stat(concat2, &st) == 0)
+		{
+			/*Found the command in PATH*/
+			free(path);
+			return (concat2);
+		}
+		free(concat2);
 	}
 
-	while (path_node != NULL)
-	{
-		step_abs_path = _strdup(path_node->str);
-		if (step_abs_path == NULL)
-			return (NULL);
-
-		step_abs_path = _strcat_realloc(step_abs_path, tokens);
-		if (step_abs_path == NULL)
-			return (NULL);
-
-		status = access(step_abs_path, F_OK | X_OK);
-		if (status == 0)
-			return (step_abs_path);
-		free(step_abs_path);
-		path_node = path_node->next;
-	}
-	return (NULL);
+	free(path);
+	return (0);
 }

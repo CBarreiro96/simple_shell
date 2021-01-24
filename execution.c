@@ -1,63 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <signal.h>
 #include "shell.h"
+
 /**
- * _prompt - print a prompt in the terminal
- * @str: is a message that print
- * Return: void.
+ * executeCmd - creates a child process to execute a cmd
+ *
+ * @program: command that will be executed
+ * @command: arguments of command
+ * @env: current environment
+ * @shpack: struct with shell information
+ *
+ * Return: pointer to the value in the environment,
+ * or NULL if there is no match
  *
  */
-void _prompt(char *str)
+int execute(char *program, char *command[], char **env, hshpack *shpack)
 {
-	int len;
+	pid_t process, status;
+	int execveSts = 0, waitSts = 0;
 
-	len = _strlen(str);
-	write(STDOUT_FILENO, str, len);
-
-}
-/**
- * execut - searh and execute binary locate in PATH
- * @tokens: line entered by user split it in tokens
- * @av: name of the executable
- * @linkedlist_path: current enviroment
- * @c:number of time that hsh run.
- * @line: line given for user
- * @nline: new line without /n
- *
- * Return: 0 if success -1 if fail
- */
-int execut(char **tokens, char **av, env_t *linkedlist_path,
-			 int c, char *line, char *nline)
-{
-	pid_t m_PID;
-	char *abs_path;
-	int i = 0;
-
-	if (tokens == NULL || *tokens == NULL)
-		return (-1);
-
-	if (av == NULL || *av == NULL)
-		return (-1);
-
-	abs_path = search_os(tokens[0], linkedlist_path);
-
-
-	m_PID = fork();
-
-	if (m_PID == -1)
+	process = fork();
+	signal(SIGINT, signal_handler2);
+	if (process == -1)
 	{
-		write(STDOUT_FILENO, "Error in fork", 13);
-		return (-1);
+		write(2, "Fork Error", 10);
+		exit(-1);
 	}
-
-	else if (m_PID == 0)
+	if (process == 0)
 	{
-		if (execve(abs_path, tokens, environ) == -1)
-			print_errors(av, tokens, c, line, nline);
-	}
 
+		execveSts = execve(program, command, env);
+		if (execveSts == -1)
+		{
+			_exit(-1);
+		}
+	}
 	else
-		wait(NULL);
+	{
+		waitSts = wait(&status);
+		signal(SIGINT, signal_handler);
+		if (waitSts == -1)
+			exit(-1);
+		if (WEXITSTATUS(status) == 0)
+			shpack->exitnum[0] = 0;
+		else
+			shpack->exitnum[0] = 2;
+	}
 
-	free(abs_path);
-
+	shpack->errnum[0] += 1;
 	return (0);
 }

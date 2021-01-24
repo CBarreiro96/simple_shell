@@ -1,54 +1,102 @@
+#include <stdlib.h>
 #include "shell.h"
+
 /**
- * _strlen - replicates strlen from the standard library
- * @s: string to be measured
- * Return: length of string
+ * str_concat - concatenates two strings
+ * @s1: string1
+ * @s2: string2
+ *
+ * Return: Pointer
  */
+char *str_concat(char *s1, char *s2)
+{
+	int l1, l2, i, j;
+	char *s;
+	char *nul = "";
+
+	if (s1 == NULL)
+		s1 = nul;
+	if (s2 == NULL)
+		s2 = nul;
+
+	l1 = 0, l2 = 0;
+	while (*(s1 + l1))
+		l1++;
+	while (*(s2 + l2))
+		l2++;
+
+	s = malloc(sizeof(char) * (l1 + l2 + 1));
+
+	if (s == 0)
+		return (0);
+
+	for (i = 0; i < l1; i++)
+		*(s + i) = *(s1 + i);
+
+	for (i = 0, j = l1; i <= l2; j++, i++)
+		*(s + j) = *(s2 + i);
+
+	return (s);
+}
+/**
+ * _strcpy - copy a source input ont destinated input
+ * @dest: target where will be stored the input
+ * @src: source to copy from
+ *
+ *
+ * Return: dest address
+ * On error: -1 inapropiate entry
+ */
+
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	for (i = 0; *(src + i) != '\0'; i++)
+		*(dest + i) = *(src + i);
+
+	*(dest + i) = *(src + i); /* adding '\0' character */
+
+	return (dest);
+}
+
+/**
+ * _strlen - function that returns the length of a string
+ * @s: string address
+ *
+ *
+ * Return: nothing
+ * On error: -1 inapropiate entry
+ */
+
 int _strlen(char *s)
 {
-	int i;
-
-	for (i = 0; *(s + i) != '\0'; i++)
-		;
-	return (i);
+	return ((!*s) ? 0 : 1 + _strlen(s + 1));
 }
+
 /**
- * _strncmp - compares two strings and returns their difference
- * @s1: the first string
- * @s2: the second string
- * @bytes: number of bytes to compare
- * Return: number of bytes that differ
+ * _strdup - function that returns a pointer to a newly allocated space
+ * in memory, which contains a copy of the string given as a parameter
+ * @str: source to copy
+ *
+ *
+ * Return: address where is stored the result
+ * On error: -1 inapropiate entry
  */
-int _strncmp(char *s1, char *s2, size_t bytes)
+
+char *_strdup(char *str)
 {
-	unsigned int i;
+	char *arr;
 
-	if (s1 == NULL || s2 == NULL)
-		return (-1);
-
-	for (i = 0; s1[i] && s2[i] && s2[i] == s1[i] && i < bytes - 1; i++)
-		;
-	return (s2[i] - s1[i]);
-}
-/**
-* _strcat_realloc - concatenates 2 strings and reallocates automatically
-* @dest: destination to copy to
-* @src: source to copy from
-* Return: pointer to concatenated strings
-**/
-char *_strcat_realloc(char *dest, char *src)
-{
-	unsigned int dest_len, src_len, i;
-
-	dest_len = _strlen(dest);
-	src_len = _strlen(src);
-	dest = _realloc(dest, dest_len, dest_len + src_len + 1);
-	if (dest == NULL)
+	if (!str)
 		return (NULL);
-	for (i = 0; i < src_len; i++)
-	{
-		dest[i + dest_len] = src[i];
-	}
-	dest[i + dest_len] = '\0';
-	return (dest);
+
+	arr = malloc((_strlen(str) * sizeof(*arr)) + 1);
+
+	if (!arr)
+		return (NULL);
+
+	_strcpy(arr, str);
+
+	return (arr);
 }
